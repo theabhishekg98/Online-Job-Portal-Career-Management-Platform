@@ -1,0 +1,22 @@
+var kafka = require('../../kafka/client');
+
+async function viewAppliedJobs(req,res){
+    let payload = {
+        params: req.params,
+        body: req.body
+    }
+    console.log("payload = ", payload);
+    kafka.make_request('viewAppliedJobs', payload, function (err, results) {
+        console.log("Make request to get applied jobs");
+        // console.log(results);
+        console.log(payload);
+        if (err) {
+            console.log("Inside err",err);
+            res.status(500).send({ "error": err });
+        } else {
+            res.status(200).send(results)
+        }
+    })
+}
+
+exports.viewAppliedJobs=viewAppliedJobs

@@ -1,0 +1,61 @@
+***********************************************
+Kafka:
+Extras:
+----------------------------
+zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties
+kafka-server-start /usr/local/etc/kafka/server.properties
+kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+kafka-console-producer --broker-list localhost:9092 --topic test
+kafka-console-consumer --bootstrap-server localhost:9092 --topic test --from-beginning
+kafka-topics --list --bootstrap-server localhost:9092
+kafka-console-consumer --bootstrap-server localhost:9092 --topic addUser --from-beginning
+
+
+Mac:
+----------------------------
+zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties
+kafka-server-start /usr/local/etc/kafka/server.properties
+kafka-topics --list --bootstrap-server localhost:9092
+
+kafka/ node server.js
+
+kafka-console-consumer --bootstrap-server localhost:9092 --topic addUser --from-beginning
+bin/kafka-topics.sh --create --topic addUser --zookeeper localhost:2181 --replication-factor 1 --partitions 1
+bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092
+
+EC2:
+----------------------------
+nohup bin/zookeeper-server-start.sh config/zookeeper.properties > ~/zookeeper-logs &
+nohup bin/kafka-server-start.sh config/server.properties > ~/kafka-logs &
+
+bin/kafka-server-stop.sh
+bin/zookeeper-server-stop.sh
+
+bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+bin/kafka-topics.sh --create --topic addUser --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
+# https://dzone.com/articles/installing-and-running-kafka-on-an-aws-instance
+# https://kafka.apache.org/quickstart
+
+
+
+***********************************************
+Redis
+
+Mac:
+----------------------------
+redis-server
+redix-cli
+del reviews
+
+
+
+***********************************************
+Kafka topics
+Kamal:
+getCompany
+getPhoto
+getJobs
+getApplication
+addApplication
+deleteApplication
